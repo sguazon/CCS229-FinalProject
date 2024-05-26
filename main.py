@@ -26,7 +26,7 @@ def handle_chat(question):
 
 def classify_feeling(text):
   """
-  Classifies the sentiment of the user's text using Gemini's response 
+  Classifies the sentiment of the user's text using Gemini's response
   (note: Gemini might not be specifically trained for sentiment analysis).
   """
   # Send the text to Gemini for analysis, prompting for feeling
@@ -63,12 +63,20 @@ def main():
       feeling = classify_feeling(text_input)
       if feeling:
         st.write(f"It sounds like you're feeling {feeling.title()} today (based on Gemini's analysis).")
+        # Creative Text Generation based on Feeling
+        if feeling:
+          prompt = f"Write a short prose that captures the feeling of {feeling.title()} based on the following text: {text_input}"
+          response = handle_chat(prompt)
+          if response:
+            st.write(f"**Feeling Prose:**\n{response.text}")
+          else:
+            st.warning("There was an error generating the prose. Please try again.")
       else:
         st.warning("There was an error analyzing your feeling. Please try again.")
     else:
       st.warning("Please enter some text to analyze your feeling.")
 
-  # Conversation History 
+  # Conversation History
   if 'chat_history' in st.session_state:
     st.subheader("Conversation History:")
     for entry in st.session_state.chat_history:
@@ -82,7 +90,6 @@ def main():
     model = genai.GenerativeModel('gemini-1.5-pro')
     st.session_state.chat_session = model.start_chat()
     st.session_state.chat_history = []
-
 
 if __name__ == '__main__':
   main()
