@@ -54,7 +54,7 @@ def main():
   st.subheader('by Shina Guazon, BSCS 3B AI')
   st.write("This application helps you understand the overall sentiment of your text sing Gemini. ")
   st.write("Tell us what's on your mind, and we'll use Gemini and sentiment analysis to classify your feeling as positive, negative, or neutral.")
-  st.write("Note: While Gemini is a powerful language model, it may not be specifically trained for sentiment analysis. This means the results might not be 100% accurate. However, it can still provide a good starting point for understanding the emotional tone of your text.")
+  st.write("Note: While Gemini is a powerful language model, it may not be specifically trained for sentiment analysis. This means the results might not be 100% accurate.")
 
   # Feeling Classification UI
   text_input = st.text_area("Tell me how you're feeling:", height=100)
